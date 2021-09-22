@@ -56,5 +56,14 @@ module.exports = {
                 resolve(user)
             })
         })
+    },
+    updateUser:(userId,userDetails)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection('product').updateOne({_id:objectId(userId)},{$set:{
+                name:userDetails.name,
+                email:userDetails.email,
+                phone:userDetails.phone
+            }})
+        })
     }
 }

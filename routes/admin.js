@@ -18,7 +18,7 @@ router.post('/addusers',(req,res)=>{
     console.log(req.body)
     
     userHelper.addUsers(req.body).then((response)=>{
-      res.render('addusers')
+      res.redirect('adminpage')
     })
 })
 router.get('/delete/:id',(req,res)=>{
@@ -33,5 +33,9 @@ router.get('/edit-users/:id',async(req,res)=>{
   let user =await userHelper.getUserDetails(req.params.id)
   console.log(user)
   res.render('edit-users',{user})
+})
+router.post('/edit-users/:id',(req,res)=>{
+  userHelper.updateUser(req.params.id,req.body)
+  res.redirect('/admin/adminpage')
 })
 module.exports = router;
