@@ -3,7 +3,7 @@ var router = express.Router();
 var userHelper = require('../helpers/userHelper')
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.session.loggedIn){
+  if(req.session.loggedIn && req.session.user){
     res.redirect('users')
   }else{
 
@@ -18,6 +18,7 @@ router.get('/signup',(req,res)=>{
 
 router.post('/signup',(req,res)=>{
   userHelper.addUsers(req.body).then((response)=>{
+    
     res.redirect('users')
   })
  
@@ -25,8 +26,9 @@ router.post('/signup',(req,res)=>{
 router.post('/',(req,res)=>{
   userHelper.doLogin(req.body).then((response)=>{
     if(response.status){
-      req.session.loggedIn = true
       req.session.user = response.user
+      req.session.loggedIn = true
+      
       res.redirect('/users')
     }else{
       req.session.loginErr = true
@@ -69,11 +71,19 @@ router.get('/users', function(req, res, next) {
     image : "https://images.unsplash.com/photo-1522252234503-e356532cafd5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGV2ZWxvcGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
   }
   ]
+  if(!req.session.user){
+    res.render('login')
+  }else{
   res.render('users',{products,users});
+  }
 });
 router.get('/logout',(req,res)=>{
-  req.session.destroy();
+  
+  delete req.session.user
+  
   res.redirect('/')
+ 
+ 
 })
 module.exports = router;
 

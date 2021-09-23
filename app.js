@@ -8,6 +8,7 @@ var db = require('./config/connection')
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
 var session = require('express-session')
+ 
 var app = express();
 
 // view engine setup
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 app.use(session({secret:"Key",cookie:{maxAge:60000}}))
+ 
 app.use(function(req, res, next) {
   res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   next();

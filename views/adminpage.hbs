@@ -24,8 +24,28 @@
   </head>
   <body>
     <section>
-  <div class="row mt-4">
-     <a href="/admin/addusers" class="btn btn-success ml-auto mr-5">Add Users</a>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light navbar transparent navbar-inverse navbar-fixed-top">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      
+    </ul>
+   
+      
+      <a href="/admin/signout"> <button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit">Logout</button></a>
+  
+  </div>
+</nav>
+    </section>
+    <section>
+  <div class="row mt-2">
+     <a href="/admin/addusers" class="btn btn-success ml-5 ">Add Users</a>
   </div>
   
     <table class="table mt-5" id="userstable">
