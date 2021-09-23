@@ -68,7 +68,7 @@ module.exports = {
     },
     checkUsers:(userEmail)=>{
         return new Promise(async(resolve,reject)=>{
-            await db.get().collection('product').findOne({email:userEmail}).then((Email)=>{
+            await db.get().collection('product').findOne({email:userEmail.email}).then((Email)=>{
                 resolve(Email)
             })
         })

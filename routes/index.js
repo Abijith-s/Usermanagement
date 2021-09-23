@@ -17,16 +17,24 @@ router.get('/signup',(req,res)=>{
 })
 
 router.post('/signup',(req,res)=>{
-  // userHelper.checkUsers(req.body.email).then((response)=>{
-  //   if(response.email ==req.body.email){
-  //     console.log("user exists")
-  //     res.render('signup')
-  //   }
-  // })
-  userHelper.addUsers(req.body).then((response)=>{
-    console.log(req.body)
-    res.redirect('users')
+  userHelper.checkUsers(req.body).then((response)=>{
+      console.log(response)
+    if(response){
+      if(response.email ==req.body.email){
+        console.log(response.email)
+        console.log("user exists")
+        res.render('signup')
+      }
+    } 
+      else {
+        userHelper.addUsers(req.body).then((response)=>{
+
+          console.log(req.body)
+          res.redirect('users')
+        })
+      }
   })
+  
  
 })
 router.post('/',(req,res)=>{

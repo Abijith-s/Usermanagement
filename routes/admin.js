@@ -15,9 +15,6 @@ router.get('/',(req,res)=>{
 });
 
 router.post('/',(req,res)=>{
-  console.log(req.body);
- 
-  
   if(req.body.name == user && req.body.password == password){
     req.session.admin = user
     req.session.loggedIn = true
