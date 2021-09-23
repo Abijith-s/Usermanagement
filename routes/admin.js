@@ -8,7 +8,9 @@ router.get('/',(req,res)=>{
   if(req.session.loggedIn&& req.session.admin){
     res.redirect('/admin/adminpage')
   }else{
-    res.render('adminlogin')
+    
+    res.render('adminlogin',{'loginErr':req.session.loginErr});
+    req.session.loginErr = false
   }
 });
 
@@ -21,6 +23,9 @@ router.post('/',(req,res)=>{
     req.session.loggedIn = true
    
     res.redirect('/admin/adminpage')
+  }else{
+    req.session.loginErr = true;
+    res.redirect('/admin')
   }
 
 })

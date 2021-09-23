@@ -30,7 +30,9 @@
 		      		</div>
 	            <div class="form-group">
 	              <input id="password-field" type="password" name="password" class="form-control" placeholder="Password" required/>
-	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	              {{#if loginErr}}
+					<p class="err" style="color:black;"> inavalid username or password </p>
+				{{/if}}
 	            </div>
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>

@@ -65,5 +65,12 @@ module.exports = {
                 phone:userDetails.phone
             }})
         })
+    },
+    checkUsers:(userEmail)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection('product').findOne({email:userEmail}).then((Email)=>{
+                resolve(Email)
+            })
+        })
     }
 }

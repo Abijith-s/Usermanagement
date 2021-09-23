@@ -17,8 +17,14 @@ router.get('/signup',(req,res)=>{
 })
 
 router.post('/signup',(req,res)=>{
+  // userHelper.checkUsers(req.body.email).then((response)=>{
+  //   if(response.email ==req.body.email){
+  //     console.log("user exists")
+  //     res.render('signup')
+  //   }
+  // })
   userHelper.addUsers(req.body).then((response)=>{
-    
+    console.log(req.body)
     res.redirect('users')
   })
  
