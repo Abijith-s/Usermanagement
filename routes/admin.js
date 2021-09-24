@@ -46,7 +46,11 @@ router.get('/adminpage',(req,res)=>{
     
 })
 router.get('/addusers',(req,res)=>{
+  if(req.session.admin){
     res.render('addusers')
+  }else{
+    res.redirect('/admin')
+  }
 })
 router.post('/addusers',(req,res)=>{
     console.log(req.body)
@@ -54,6 +58,7 @@ router.post('/addusers',(req,res)=>{
     userHelper.addUsers(req.body).then((response)=>{
       res.redirect('adminpage')
     })
+ 
 })
 router.get('/delete/:id',(req,res)=>{
   let proId = req.params.id;
@@ -63,10 +68,13 @@ router.get('/delete/:id',(req,res)=>{
   })
 })
 router.get('/edit-users/:id',async(req,res)=>{
-  
+  if(req.session.admin){
   let user =await userHelper.getUserDetails(req.params.id)
   console.log(user)
   res.render('edit-users',{user})
+}else{
+  res.redirect('/admin')
+}
 })
 router.post('/edit-users/:id',(req,res)=>{
   userHelper.updateUser(req.params.id,req.body)
