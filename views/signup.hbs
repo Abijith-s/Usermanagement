@@ -36,12 +36,16 @@
 				</div>
                 <div class="form-group">
 		      			<input id="phone" type="text" name="phone" class="form-control" placeholder="Phone Number" required >
-						<p id="error3" style="color: red;"></p>  
+						<p class="Err" id="error3" style="color: red;"></p>  
 					  </div>
 					  
 	            <div class="form-group">
 	              <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
-	            	<p id="error4" style="color: red;"></p>  
+	            	<p id="error4" style="color: red;"></p> 
+                    {{#if userExist}} 
+                    <p style="color: red;">User already exist</p>
+                    {{/if}}
+                    </p>
 				</div>
                  <div class="form-group">
 	            	<button type="submit"   class="form-control btn btn-primary submit px-3">Sign Up</button>

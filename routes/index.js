@@ -13,7 +13,8 @@ router.get('/', function(req, res, next) {
  
 });
 router.get('/signup',(req,res)=>{
-  res.render('signup')
+  res.render('signup',{userExist:req.session.userExistErr})
+  req.session.userExistErr= false
 })
 
 router.post('/signup',(req,res)=>{
@@ -21,9 +22,9 @@ router.post('/signup',(req,res)=>{
       console.log(response)
     if(response){
       if(response.email ==req.body.email){
-        console.log(response.email)
-        console.log("user exists")
-        res.render('signup')
+        req.session.userExistErr = true;
+        res.redirect('/signup')
+        
       }
     } 
       else {
